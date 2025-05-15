@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">OfficeSpaceMobile</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_room_details">RoomDetailsActivity</string>
+    <string name="title_activity_my_bookings">MyBookingsActivity</string>
+</resources>

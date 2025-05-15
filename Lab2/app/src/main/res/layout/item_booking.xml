@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="#EEEEEE"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:id="@+id/tvBookedRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Кімната"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/tvBookedDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Дата: 2025-05-13 14:00"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/tvBookedSeats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Місць заброньовано: 2"
+        android:textSize="14sp"/>
+</LinearLayout>
