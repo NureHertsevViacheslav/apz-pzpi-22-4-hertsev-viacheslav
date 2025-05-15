@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title data-i18n="loginTitle">Login – OfficeSpace</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <h1 data-i18n="loginTitle">Login</h1>
+
+<label>
+  <span data-i18n="username">Username</span><br/>
+  <input type="text" id="loginUsername" />
+</label><br/>
+<label>
+  <span data-i18n="password">Password</span><br/>
+  <input type="password" id="loginPassword" />
+</label><br/><br/>
+
+<button onclick="login()"><span data-i18n="loginBtn">Login</span></button>
+
+  <p><a href="register.html" data-i18n="noAccount">No account? Register</a></p>
+
+  <script src="https://unpkg.com/i18next@21.9.1/dist/umd/i18next.min.js"></script>
+  <script src="https://unpkg.com/i18next-browser-languagedetector@6.1.4/i18nextBrowserLanguageDetector.min.js"></script>
+  <script src="https://unpkg.com/i18next-http-backend@1.4.2/i18nextHttpBackend.min.js"></script>
+  <script src="scripts/i18n.js"></script>
+  <script src="scripts/auth.js"></script>
+  <script>
+   
+function login() {
+  const username = document.getElementById("loginUsername").value.trim();
+  const password = document.getElementById("loginPassword").value.trim();
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+
+  const match = users.find(u => u.username === username && u.password === password);
+  if (match) {
+    localStorage.setItem("currentUser", JSON.stringify(match));
+    window.location.href = match.role === "admin" ? "admin.html" : "index.html";
+  } else {
+    alert("Invalid username or password.");
+  }
+}
+</script>
+
+</body>
+</html>
