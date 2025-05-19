@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: officespace-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: officespace
+  template:
+    metadata:
+      labels:
+        app: officespace
+    spec:
+      containers:
+      - name: officespace
+        image: viacheslau/officespace:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DB_HOST
+          value: "postgres-service"
+        - name: DB_USER
+          value: "postgres"
+        - name: DB_PASSWORD
+          value: "12345"
+        - name: DB_NAME
+          value: "officespace"
