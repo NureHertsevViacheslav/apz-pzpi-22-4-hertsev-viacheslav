@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tvDetailRoomName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Назва кімнати"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp"/>
+
+    <TextView
+        android:id="@+id/tvDetailCapacity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Місткість: 0"
+        android:textSize="18sp"/>
+    <EditText
+        android:id="@+id/etSeatCount"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="Кількість місць для бронювання"
+        android:inputType="number"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/btnPickStartDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Оберіть дату початку" />
+
+
+    <Button
+        android:id="@+id/btnPickEndDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Оберіть дату кінця" />
+
+    <Button
+        android:id="@+id/btnBook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Забронювати"
+        android:layout_marginTop="24dp"/>
+
+</LinearLayout>
