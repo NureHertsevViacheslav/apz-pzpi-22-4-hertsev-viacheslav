@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title data-i18n="registerTitle">Register – OfficeSpace</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+<h1 data-i18n="registerTitle">Register</h1>
+
+<label>
+  <span data-i18n="username">Username</span><br/>
+  <input type="text" id="regUsername" />
+</label><br/>
+<label>
+  <span data-i18n="email">Email</span><br/>
+  <input type="email" id="regEmail" />
+</label><br/>
+<label>
+  <span data-i18n="password">Password</span><br/>
+  <input type="password" id="regPassword" />
+</label><br/>
+<br/><br/>
+
+<button onclick="register()"><span data-i18n="registerBtn">Register</span></button>
+
+  <p><a href="login.html" data-i18n="hasAccount">Already have an account? Login</a></p>
+
+  <script src="https://unpkg.com/i18next@21.9.1/dist/umd/i18next.min.js"></script>
+  <script src="https://unpkg.com/i18next-browser-languagedetector@6.1.4/i18nextBrowserLanguageDetector.min.js"></script>
+  <script src="https://unpkg.com/i18next-http-backend@1.4.2/i18nextHttpBackend.min.js"></script>
+  <script src="scripts/i18n.js"></script>
+<script>
+async function register() {
+  const username = document.getElementById("regUsername").value.trim();
+  const email = document.getElementById("regEmail").value.trim();
+  const password = document.getElementById("regPassword").value.trim();
+  const role = "user";
+
+  if (!username || !email || !password) {
+    alert("Please fill all fields.");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:3000/api/users");
+    const users = await res.json();
+
+    const exists = users.some(u => u.username === username || u.email === email);
+    if (exists) {
+      alert("User with this username or email already exists.");
+      return;
+    }
+
+    await fetch("http://localhost:3000/api/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, email, password, role }),
+    });
+
+    alert("Registered successfully!");
+    window.location.href = "login.html";
+  } catch (err) {
+    console.error("Registration error:", err);
+    alert("Server error during registration.");
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">OfficeSpace</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <header>
+    <h1 data-i18n="header">OfficeSpace – Room Booking</h1>
+    <div id="language-switcher">
+      <button onclick="changeLanguage('en')">English</button>
+      <button onclick="changeLanguage('uk')">Українська</button>
+      <button onclick="logout()">Logout</button>
+
+    </div>
+  </header>
+
+  <main>
+    <h2 data-i18n="availableRooms">Available Rooms</h2>
+    <ul id="room-list">
+    
+    </ul>
+    <h2 data-i18n="myBookings">My Bookings</h2>
+<ul id="my-bookings"></ul>
+
+<div id="bookingModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <h3 data-i18n="book">Book Room</h3>
+    <p id="bookingRoomName"></p>
+
+    <label>
+      <span data-i18n="seats">Seats to book:</span><br/>
+      <input type="number" id="bookingSeats" min="1" />
+    </label><br/>
+
+    <label>
+      <span data-i18n="startDate">Start date:</span><br/>
+      <input type="date" id="bookingStartDate" />
+    </label><br/>
+
+    <label>
+      <span data-i18n="endDate">End date:</span><br/>
+      <input type="date" id="bookingEndDate" />
+    </label><br/><br/>
+
+    <button onclick="confirmBooking()">Confirm</button>
+    <button onclick="closeBooking()">Cancel</button>
+  </div>
+</div>
+
+
+  </main>
+
+  <script src="https://unpkg.com/i18next@21.9.1/dist/umd/i18next.min.js"></script>
+  <script src="https://unpkg.com/i18next-browser-languagedetector@6.1.4/i18nextBrowserLanguageDetector.min.js"></script>
+  <script src="https://unpkg.com/i18next-http-backend@1.4.2/i18nextHttpBackend.min.js"></script>
+
+  <script src="scripts/i18n.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>

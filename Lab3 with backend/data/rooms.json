@@ -1,0 +1,21 @@
+[
+{
+  "id": 1,
+  "name": "Delta",
+  "capacity": 8,
+  "availableSeats": 8
+},
+{
+  "id": 2,
+  "name": "Sigma",
+  "capacity": 12,
+  "availableSeats": 12
+},
+{
+  "id": 3,
+  "name": "Gamma",
+  "capacity": 4,
+  "availableSeats": 4
+}
+]
+  

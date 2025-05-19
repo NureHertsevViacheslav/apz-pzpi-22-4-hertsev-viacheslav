@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title data-i18n="adminTitle">Admin Panel – OfficeSpace</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <header>
+    <h1 data-i18n="adminHeader">Administration Panel</h1>
+    <div id="language-switcher">
+      <button onclick="changeLanguage('en')">English</button>
+      <button onclick="changeLanguage('uk')">Українська</button>
+      <button onclick="logout()">Logout</button>
+
+    </div>
+  </header>
+  
+  <button onclick="clearAllStorage()">Очистити localStorage</button>
+  <main>
+    <section>
+      <h2 data-i18n="userManagement">User Management</h2>
+      <table id="userTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th data-i18n="username">Username</th>
+            <th data-i18n="email">Email</th>
+            <th data-i18n="password">Password</th>
+            <th data-i18n="role">Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+      
+<button onclick="showUserForm()">
+  + <span data-i18n="addUser">Add User</span>
+</button>
+
+<div id="userFormModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <h3 id="userFormTitle">Add User</h3>
+    <label>
+      <span data-i18n="username">Username:</span><br/>
+      <input type="text" id="usernameInput" />
+    </label><br/>
+    <label>
+      <span data-i18n="email">Email:</span><br/>
+      <input type="email" id="emailInput" />
+    </label><br/>
+    <label>
+      <span data-i18n="password">Password:</span><br/>
+      <input type="text" id="passwordInput" />
+    </label><br/>
+    <label>
+      <span data-i18n="role">Role:</span><br/>
+      <select id="roleInput">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+    </label><br/><br/>
+    <button onclick="saveUser()">Save</button>
+    <button onclick="hideUserForm()">Cancel</button>
+  </div>
+</div>
+
+
+<div id="bookingFormModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <h3>Edit Booking</h3>
+    <p id="bookingInfoText"></p>
+
+    <label>Seats:<br/>
+      <input type="number" id="editBookingSeats" min="1" />
+    </label><br/>
+
+    <label>Start Date:<br/>
+      <input type="date" id="editBookingStartDate" />
+    </label><br/>
+
+    <label>End Date:<br/>
+      <input type="date" id="editBookingEndDate" />
+    </label><br/><br/>
+
+    <button onclick="saveBookingEdit()">Save</button>
+    <button onclick="hideBookingForm()">Cancel</button>
+  </div>
+</div>
+
+
+    </section>
+
+<h2 data-i18n="allBookings">All Bookings</h2>
+<table id="bookingTable">
+<thead>
+  <tr>
+    <th>User</th>
+    <th>Room</th>
+    <th>Seats</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Actions</th>
+  </tr>
+</thead>
+
+  <tbody>
+
+  </tbody>
+</table>
+
+
+    <section>
+      <h2 data-i18n="roomManagement">Room Management</h2>
+      <label>
+        <span data-i18n="minCapacity">Min capacity:</span>
+        <input type="number" id="capacityFilter" placeholder="0" oninput="applyFilter()" />
+      </label>
+
+      <table id="roomTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th data-i18n="roomName">Room Name</th>
+            <th data-i18n="capacity">Capacity</th>
+            <th data-i18n="availableSeats">Available Seats</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+
+      <button onclick="showRoomForm()">
+        + <span data-i18n="addRoom">Add Room</span>
+      </button>
+
+      <div id="roomFormModal" class="modal" style="display:none;">
+        <div class="modal-content">
+          <h3 id="formTitle">Add Room</h3>
+          <label>
+            <span data-i18n="roomName">Room Name:</span><br/>
+            <input type="text" id="roomNameInput" />
+          </label><br/>
+          <label>
+            <span data-i18n="capacity">Capacity:</span><br/>
+            <input type="number" id="roomCapacityInput" />
+          </label><br/>
+          <label>
+            <span data-i18n="availableSeats">Available Seats:</span><br/>
+            <input type="number" id="roomAvailableSeatsInput" />
+          </label><br/><br/>
+          <button onclick="saveRoom()">Save</button>
+          <button onclick="hideRoomForm()">Cancel</button>
+        </div>
+      </div>
+
+    </section>
+
+    <section>
+      <h2 data-i18n="backup">Backup</h2>
+<button onclick="createBackup()">
+  <span data-i18n="createBackup">Create Backup</span>
+</button>
+</section>
+
+    <section>
+      <h2 data-i18n="importExport">Import / Export</h2>
+
+<button onclick="createBackup()"><span data-i18n="export">Export</span></button>
+
+<label>
+  <span data-i18n="importUsers">Import Users</span>
+  <input type="file" accept=".json" onchange="importUsers(event)" />
+</label>
+
+<label>
+  <span data-i18n="importRooms">Import Rooms</span>
+  <input type="file" accept=".json" onchange="importRooms(event)" />
+</label>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/i18next@21.9.1/dist/umd/i18next.min.js"></script>
+  <script src="https://unpkg.com/i18next-browser-languagedetector@6.1.4/i18nextBrowserLanguageDetector.min.js"></script>
+  <script src="https://unpkg.com/i18next-http-backend@1.4.2/i18nextHttpBackend.min.js"></script>
+
+  <script src="scripts/i18n.js"></script>
+  <script src="scripts/admin.js"></script>
+</body>
+</html>
